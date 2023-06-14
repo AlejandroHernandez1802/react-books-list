@@ -1,0 +1,12 @@
+.book-container{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.book-container:last-child{
+  margin-bottom: 0px;
+}
