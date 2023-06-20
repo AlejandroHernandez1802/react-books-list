@@ -1,19 +1,23 @@
 /*Styles import*/
 import "../assets/components/Book.css";
 
-/*States imports*/
+/*Hooks imports*/
 import { useState } from "react";
+import UseBooksContext from "../hooks/UseBooksContext";
 
 /*Components imports*/
 import EditBook from "./EditBook";
 
-function Book({ book, onDelete, onEdit }) {
+function Book({ book }) {
+	/*Context data declaration*/
+	const { deleteBookById } = UseBooksContext();
+
 	/*States declaration*/
 	const [showEdit, setEdit] = useState(false);
 
 	/*Buttons handlers*/
 	const handleDeleteClick = () => {
-		onDelete(book.id);
+		deleteBookById(book.id);
 	};
 
 	const handlEditClick = () => {
@@ -21,14 +25,13 @@ function Book({ book, onDelete, onEdit }) {
 	};
 
 	/*Edit book handler*/
-	const onEditBook = (book) => {
-		onEdit(book);
+	const editBook = () => {
 		setEdit(false);
 	};
 
 	/*Book content declaration*/
 	let bookContent = <span>{book.title}</span>;
-	if (showEdit) bookContent = <EditBook book={book} onEditBook={onEditBook} />;
+	if (showEdit) bookContent = <EditBook book={book} editBook={editBook} />;
 
 	return (
 		<div className="book-container">

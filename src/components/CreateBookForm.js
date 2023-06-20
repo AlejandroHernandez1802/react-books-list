@@ -1,10 +1,14 @@
-/*States imports*/
+/*Hooks imports*/
 import { useState } from "react";
+import UseBooksContext from "../hooks/UseBooksContext";
 
 /*Style imports*/
 import "../assets/components/CreateBookForm.css";
 
-function CreateBookForm({ onCreate }) {
+function CreateBookForm() {
+	/*Context data declaration */
+	const { createBook } = UseBooksContext();
+
 	/*States declaration*/
 	const [title, setTitle] = useState("");
 
@@ -15,7 +19,7 @@ function CreateBookForm({ onCreate }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		onCreate(title);
+		createBook(title);
 		setTitle("");
 	};
 
